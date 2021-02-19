@@ -37,15 +37,7 @@ FROM base
 
 WORKDIR /home/qt
 
-# additional packages for linuxDeployQt
-RUN apt-get update && apt-get install -y \
- libncurses5-dev \
- libfuse-dev \
- libjasper-dev \
- libegl1-mesa-dev \
- && apt-get -qq clean \
- && rm -rf /var/lib/apt/lists/*
-
 COPY --from=unpacker /usr/local /usr/local
 
-RUN wget https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage && chmod a+x linuxdeployqt-7-x86_64.AppImage
+# linuxdeployqt allows only ubuntu:16.04 which won't be supported in 2 months
+#RUN wget https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage && chmod a+x linuxdeployqt-7-x86_64.AppImage
