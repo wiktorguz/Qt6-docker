@@ -6,17 +6,11 @@ jobs:
   - os: linux
     dist: focal
 
-before_install:
-- echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-#- docker build . -t wiktorguz/quickcut
-#- docker run wiktorguz/quickcut /bin/sh -c "uname -a"
-- docker ps -a
 script:
 - |-
   set -e
-  ${CXX} --version
+  echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-  cmake --version
 env:
   global:
     - DOCKER_USER=wiktorguz
