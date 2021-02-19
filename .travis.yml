@@ -1,0 +1,24 @@
+language: c++
+
+services:
+  - docker
+
+jobs:
+  include:
+    - os: linux
+      dist: focal
+      env: [ 'CXX=g++-9', 'PACKAGES=g++-9' ]
+
+
+before_install:
+- docker build . -t wiktorguz/quickcut
+- docker run wiktorguz/quickcut /bin/sh -c "uname -a"
+- docker ps -a
+
+
+script:
+  - |
+      set -e
+      ${CXX} --version
+      
+      cmake --version
