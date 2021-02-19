@@ -37,7 +37,7 @@ FROM base
 
 WORKDIR /home/qt
 
-COPY --from=unpacker /usr/local /usr/local
+COPY --from=builder /usr/local /usr/local
 
 # linuxdeployqt allows only ubuntu:16.04 which won't be supported in 2 months
 #RUN wget https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage && chmod a+x linuxdeployqt-7-x86_64.AppImage
