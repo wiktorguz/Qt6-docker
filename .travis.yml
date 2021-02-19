@@ -10,6 +10,8 @@ script:
 - |-
   set -e
   echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+  docker build . -t wiktorguz/qt6:6.0.1
+  docker push wiktorguz/qt6:6.0.1
 
 env:
   global:

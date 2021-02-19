@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
  libfreetype6-dev \
  libx11-dev \
  libxcomposite-dev \
+ libgl1-mesa-dev \
  mesa-common-dev \
  libcurl4-openssl-dev \
  libwebkit2gtk-4.0-dev \
@@ -15,7 +16,6 @@ RUN apt-get update && apt-get install -y \
  libfontconfig1 \
  curl \
  unzip \
- libgl1-mesa-dev \
  wget \
  && apt-get -qq clean \
  && rm -rf /var/lib/apt/lists/*
@@ -28,7 +28,8 @@ RUN pip3 install cmake ninja conan
 #ENV PATH $QT_DESKTOP/bin:$PATH
 
 
-FROM base as builder
+FROM base 
+# as builder
 RUN wget https://download.qt.io/official_releases/qt/6.0/6.0.1/single/qt-everywhere-src-6.0.1.tar.xz
 RUN tar -xf qt-everywhere-src-6.0.1.tar.xz
 WORKDIR qt-everywhere-src-6.0.1
