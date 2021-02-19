@@ -7,7 +7,7 @@ jobs:
     dist: focal
 
 before_install:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 #- docker build . -t wiktorguz/quickcut
 #- docker run wiktorguz/quickcut /bin/sh -c "uname -a"
 - docker ps -a
