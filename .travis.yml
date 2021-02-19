@@ -1,24 +1,23 @@
-language: c++
-
+language: shell
 services:
-  - docker
-
+- docker
 jobs:
   include:
-    - os: linux
-      dist: focal
-      env: [ 'CXX=g++-9', 'PACKAGES=g++-9' ]
-
+  - os: linux
+    dist: focal
 
 before_install:
-- docker build . -t wiktorguz/quickcut
-- docker run wiktorguz/quickcut /bin/sh -c "uname -a"
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#- docker build . -t wiktorguz/quickcut
+#- docker run wiktorguz/quickcut /bin/sh -c "uname -a"
 - docker ps -a
-
-
 script:
-  - |
-      set -e
-      ${CXX} --version
-      
-      cmake --version
+- |-
+  set -e
+  ${CXX} --version
+
+  cmake --version
+env:
+  global:
+    - DOCKER_USER=wiktorguz
+    - secure: f122Y058LAIC/cYLoVVZA6iBY3V32+k2YSA0P6tTY1q3qTIFDG1tTDmDibRn5S1ud/LELrR2ixnlInF/xqe+9TS12L5x6D7yZtizWuLb8GAYxadUM5mS07rY2Mzat8gerU6KbPXD4RRuXfdmT9/vPOEgYaEXREPtIQuLo4vKcg/xzuSfB8HGZYnRrrQnX84O8yKSEVXOB1PkuJE/OFWEmXc3vv8swdyoZK4ag4tZVAcnjcZg72qVoxnfrXdBKvuAWi4rXoXMmaL/fvpYiGBNHBupVgzN/ssG8i7jp8sw1dc5AN6Hi3RFGLCj4w59eIbjgyicWdzWwpo1aUpvchVQUOJCodWUx93HrpjEWmUhSHzG8BQGZbWTBHqz25BafvvLp9fFy1JUrGbX90YJySpHkQlleiTWnfyTyq/R0gGBG/esikzM4J2yDH3rj9Oiye/qBlFQrV5mVVQNLKqo0zbphi7mYhWdf1IoCE4PTzITcEV69mHkJQtsEQyM6uhAGjG4whd5L0qdjuRl1VlecX9835/OYs9acSKP+k3CO5uvsgVsiLcq2xQlKI+/DzOeWOiAUwrnR5udtUwnZ9SXyh6hGUptN7OAWn4pCfucoK04sAMIknpGuUEZ5n/bss0wOc4rsEz0dPL9VjgXXIOd+HHYs0GslOFgA23ERNb2jsE5qHo=
