@@ -23,9 +23,12 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install cmake ninja conan
 
 FROM base as builder
-RUN wget https://download.qt.io/official_releases/qt/6.0/6.0.3/single/qt-everywhere-src-6.0.3.tar.xz
-RUN tar -xf qt-everywhere-src-6.0.3.tar.xz
-WORKDIR qt-everywhere-src-6.0.3
+
+ARG QT_VER=6.0.4
+
+RUN wget https://download.qt.io/official_releases/qt/6.0/${QT_VER}/single/qt-everywhere-src-${QT_VER}.tar.xz
+RUN tar -xf qt-everywhere-src-${QT_VER}.tar.xz
+WORKDIR qt-everywhere-src-${QT_VER}
 RUN mkdir build
 WORKDIR build
 RUN cmake .. -GNinja
