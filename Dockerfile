@@ -24,9 +24,9 @@ RUN pip3 install cmake ninja conan
 
 FROM base as builder
 
-ARG QT_VER=6.0.4
+ARG QT_VER=6.1.0
 
-RUN wget https://download.qt.io/official_releases/qt/6.0/${QT_VER}/single/qt-everywhere-src-${QT_VER}.tar.xz
+RUN wget https://download.qt.io/official_releases/qt/6.1/${QT_VER}/single/qt-everywhere-src-${QT_VER}.tar.xz
 RUN tar -xf qt-everywhere-src-${QT_VER}.tar.xz
 WORKDIR qt-everywhere-src-${QT_VER}
 RUN mkdir build
@@ -42,5 +42,4 @@ WORKDIR /home/qt
 
 COPY --from=builder /usr/local /usr/local
 
-# linuxdeployqt allows only ubuntu:16.04 which won't be supported in 2 months
-#RUN wget https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage && chmod a+x linuxdeployqt-7-x86_64.AppImage
+RUN wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage && chmod a+x linuxdeployqt-continuous-x86_64.AppImage
