@@ -33,13 +33,13 @@ RUN mkdir build
 WORKDIR build
 RUN cmake .. -GNinja
 RUN cmake --build . --parallel
-RUN cmake --install .
+#RUN cmake --install .
 
 
-FROM base
+#FROM base
 
-WORKDIR /home/qt
+#WORKDIR /home/qt
 
-COPY --from=builder /usr/local /usr/local
+#COPY --from=builder /usr/local /usr/local
 
-RUN wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage && chmod a+x linuxdeployqt-continuous-x86_64.AppImage
+#RUN wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage && chmod a+x linuxdeployqt-continuous-x86_64.AppImage
